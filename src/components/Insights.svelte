@@ -1,30 +1,37 @@
 <div class="insights">
   <div class="uk-child-width-1-5@m uk-grid-small uk-grid-match" uk-grid>
-    {#each ins as {id, timeCode, name, date, note}}
-      <div>
-        <div class="uk-card uk-card-secondary card">
-          <div class="title">
+      {#each ins as {id, timeCode, name, date, note}}
+        <div>
+          <div class="uk-card uk-card-secondary card">
+            <div class="title">
 
-            <div class="play">
-              <span class="material-icons play-btn">play_circle</span>
-              <span class="time-code">{timeCode}</span>
+              <div class="play">
+                <span on:click={() => onChangeTimeCode(getSeconds(timeCode))}
+                      class="material-icons play-btn">play_circle
+                </span>
+                <span class="time-code">{timeCode}</span>
+              </div>
+              <div class="title-info">
+                <h5>{name}</h5>
+                <span>{getShortDate(date)}</span>
+              </div>
             </div>
-            <div class="title-info">
-              <h5>{name}</h5>
-              <span>{getShortDate(date)}</span>
-            </div>
+            <p>{note}</p>
           </div>
-          <p>{note}</p>
         </div>
-      </div>
-    {/each}
-
+      {/each}
   </div>
 </div>
 
 <script>
-  import { insights } from '../stores';
-  import {getShortDate} from '../utils';  
+  import {insights} from '../stores';
+  import {getSeconds} from '../utils';
+  import {getShortDate} from '../utils';
+  import {video} from '../stores';
+
+  const onChangeTimeCode = (t) => {
+    $video.currentTime = t
+  }
   let ins
 
   insights.subscribe(val => {

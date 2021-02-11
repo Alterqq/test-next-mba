@@ -26,8 +26,6 @@
 
   let mode
 
-
-
   infoMode.subscribe(value => {
     mode = value
   })

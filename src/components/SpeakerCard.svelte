@@ -52,7 +52,6 @@
       position: absolute;
       right: 8px;
       top: 8px;
-      background-color: $orange;
       background-color: gray;
       border-radius: 50%;
       width: 20px;

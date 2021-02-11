@@ -9,3 +9,60 @@ export const insights = writable([
   {id: 5, timeCode: '00:23', name: 'М. Уткина', date: new Date('2020.10.15'), note: 'lorem ipsum'},
   {id: 6, timeCode: '00:18', name: 'М. Уткина', date: new Date('2020.10.15'), note: 'lorem ipsum'},
 ])
+export const speakers = writable([
+  {
+    id: 1,
+    name: 'Дмитрий Пашустин',
+    prof: 'Инструменты',
+    position: 'Руководитель Digital-направления в «Газпром-Медиа»',
+    isTarget: true
+  },
+  {
+    id: 2,
+    name: 'Сергей Купяков',
+    prof: 'Логистика',
+    position: 'Руководитель Digital-направления в «Газпром-Медиа»',
+    isTarget: false
+  },
+  {
+    id: 3,
+    name: 'Артем Александров',
+    prof: 'Инструменты',
+    position: 'Руководитель Digital-направления в «Газпром-Медиа»',
+    isTarget: false
+  },
+  {
+    id: 4,
+    name: 'Сергей Купяков',
+    prof: 'Логистика',
+    position: 'Руководитель Digital-направления в «Газпром-Медиа»',
+    isTarget: false
+  },
+  {
+    id: 5,
+    name: 'Дмитрий Пашустин', prof: 'Инструменты', position: 'Руководитель Digital-направления в «Газпром-Медиа»',
+    isTarget: false
+  },
+  {
+    id: 6,
+    name: 'Артем Александров',
+    prof: 'Логистика',
+    position: 'Руководитель Digital-направления в «Газпром-Медиа»',
+    isTarget: false
+  },
+  {
+    id: 7,
+    name: 'Дмитрий Пашустин',
+    prof: 'Инструменты',
+    position: 'Руководитель Digital-направления в «Газпром-Медиа»',
+    isTarget: false
+  },
+  {
+    id: 8,
+    name: 'Артем Александров',
+    prof: 'Логистика',
+    position: 'Руководитель Digital-направления в «Газпром-Медиа»',
+    isTarget: false
+  },
+])
+export const video = writable(null)

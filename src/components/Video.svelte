@@ -9,12 +9,25 @@
         on:loadedmetadata={onLoadMetaData}
         on:timeupdate={onTimeUpdate}
         bind:this={player}
-        src={video}
+        src={mp4}
         uk-video="autoplay: false"
         on:loadstart={player.volume = 0.1}
     ></video>
+    <span class="material-icons fullscreen" on:click={getFullScreen}>fullscreen</span>
+    <span on:mouseleave={onHiddenVolume} on:mouseenter={onShowVolume} class="material-icons volume">volume_up</span>
+    <input
+        on:mouseenter={onShowVolume}
+        on:mouseleave={onHiddenVolume}
+        bind:this={volume}
+        value="10"
+        on:input={changeVolume}
+        min="0" max="100"
+        class="volume-range uk-range"
+        class:active-volume={showVolume}
+        type="range"
+    />
       {#if playMode === false}
-        <textarea on:keyup={addInsight} placeholder="Тут можно вводить текст" bind:value={note}></textarea>
+        <textarea on:keyup={addInsight} placeholder="Тут можно вводить текст и нажать Enter" bind:value={note}></textarea>
       {/if}
   </div>
   <div class="progress">
@@ -26,25 +39,46 @@
 </div>
 
 <script>
-  import video from '../../public/assets/video.mp4'
+  import mp4 from '../../public/assets/video.mp4'
   import UIkit from 'uikit';
   import {insights} from '../stores';
-  import {getDuration} from '../utils';
+  import {video} from '../stores';
+  import {getTime} from '../utils';
 
   let note = ''
   let player
   let progress
   let playMode = false
-  let timeCode
+  let timeCode = '00:00'
   let duration
+  let volume
+  let showVolume = false
+
+  const onShowVolume = () => {
+    showVolume = true
+  }
+
+  const onHiddenVolume = () => {
+    showVolume = false
+  }
+
+  const changeVolume = () => {
+    player.volume = volume.value / 100
+  }
+
+  const getFullScreen = () => {
+    player.requestFullscreen()
+  }
 
   const onLoadMetaData = () => {
-    duration = getDuration(player.duration)
+    video.set(player)
+    duration = getTime(player.duration)
   }
 
   const addInsight = (event) => {
     if (event.key === 'Enter' && event.target.value.trim() !== '') {
-      insights.set([...$insights, {id: Date.now(), timeCode, name: 'Имя', date: new Date(), note}])
+      let newArr = [...$insights, {id: Date.now(), timeCode, name: 'Имя', date: new Date(), note}]
+      insights.set(newArr)
       note = ''
     }
   }
@@ -62,9 +96,7 @@
   const onTimeUpdate = () => {
     UIkit.util.ready(function () {
       progress.value = 100 * player.currentTime / player.duration
-      const date = new Date(null);
-      date.setSeconds(player.currentTime)
-      timeCode = date.toISOString().substr(14, 5);
+      timeCode = getTime(player.currentTime)
     })
     if (player.ended) {
       playMode = false
@@ -91,6 +123,41 @@
     .player {
       position: relative;
 
+      .volume-range {
+        position: absolute;
+        writing-mode: bt-lr;
+        -webkit-appearance: slider-vertical;
+        width: 8px;
+        height: 80px;
+        padding: 0 5px;
+        bottom: 42px;
+        right: 50px;
+        opacity: 0;
+        transition-duration: 200ms;
+      }
+
+      .active-volume {
+        opacity: 1;
+
+      }
+
+      .fullscreen, .volume {
+        position: absolute;
+        bottom: 5px;
+
+        font-size: 30px;
+        color: $orange;
+        cursor: pointer;
+      }
+
+      .fullscreen {
+        right: 10px;
+      }
+
+      .volume {
+        right: 40px;
+      }
+
       textarea {
         position: absolute;
         bottom: 10%;
@@ -104,7 +171,7 @@
         font-size: 20px;
         opacity: 0.6;
         border-radius: 12px;
-        animation: textarea 500ms;
+        animation: opacity 500ms;
       }
 
       .pause {
@@ -160,7 +227,7 @@
 
   }
 
-  @keyframes textarea {
+  @keyframes opacity {
     0% {
       opacity: 0;
     }
