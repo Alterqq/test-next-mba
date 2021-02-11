@@ -21,9 +21,12 @@
   import AccordionItem from './NotesItem.svelte';
   import {MOCK_TEXT} from '../constants';
   import {infoMode} from '../stores';
+
   import Insights from './Insights.svelte';
 
   let mode
+
+
 
   infoMode.subscribe(value => {
     mode = value
@@ -47,13 +50,14 @@
 </script>
 
 <style lang="scss">
+  @import "../styles/variables";
   .information {
     margin: auto 5%;
     padding-bottom: 10px;
 
     .active-mode {
-      color: #E7534E;
-      border-bottom: 3px solid #E7534E;
+      color: $orange;
+      border-bottom: 3px solid $orange;
     }
 
     span {

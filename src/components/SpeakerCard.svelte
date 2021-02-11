@@ -24,9 +24,10 @@
 </script>
 
 <style lang="scss">
+  @import "../styles/variables";
   .active-card {
     position: absolute;
-    border: 1px solid #E7534E;
+    border: 1px solid $orange;
     border-radius: 10px;
     top: 0;
     right: 0;
@@ -51,7 +52,7 @@
       position: absolute;
       right: 8px;
       top: 8px;
-      background-color: #E7534E;
+      background-color: $orange;
       background-color: gray;
       border-radius: 50%;
       width: 20px;
@@ -63,7 +64,7 @@
     }
 
     .active-check {
-      background-color: #E7534E;
+      background-color: $orange;
     }
 
     h3 {

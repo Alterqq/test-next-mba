@@ -1,6 +1,7 @@
 <div class="app">
   <Header/>
   <Slider/>
+  <Video/>
   <Information/>
 </div>
 
@@ -17,5 +18,6 @@
   import Header from './components/Header.svelte';
   import Slider from './components/Slider.svelte';
   import Information from './components/Information.svelte';
+  import Video from './components/Video.svelte';
 
 </script>

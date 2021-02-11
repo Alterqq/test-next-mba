@@ -15,6 +15,7 @@
 </script>
 
 <style lang="scss">
+  @import "../styles/variables";
   .download {
     height: 14px;
     margin-left: 10px;
@@ -26,7 +27,7 @@
   }
 
   .title {
-    color: #E7534E;
+    color: $orange;
     font: {
       size: 14px;
       weight: bold;
@@ -37,13 +38,12 @@
     }
   }
 
-  li {
+  li:nth-child(n) {
     position: relative;
     color: white;
-  }
-
-  li:last-child {
     margin-top: 7px;
   }
+
+
 
 </style>
