@@ -14,5 +14,24 @@
     "@snowpack/plugin-sass": "^1.3.0",
     "svelte": "^3.32.2",
     "uikit": "^3.6.16"
-  }
+  },
+  "name": "test-next-mba",
+  "description": "> ✨ Bootstrapped with Create Snowpack App (CSA).",
+  "version": "1.0.0",
+  "main": "snowpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alterqq/test-next-mba.git"
+  },
+  "keywords": [
+    "svelte",
+    "test",
+    "spa"
+  ],
+  "author": "Maksat <maxpower6@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alterqq/test-next-mba/issues"
+  },
+  "homepage": "https://github.com/Alterqq/test-next-mba#readme"
 }
