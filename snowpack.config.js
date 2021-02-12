@@ -29,6 +29,7 @@ module.exports = {
     /* ... */
   },
   buildOptions: {
-    /* ... */
+    baseUrl: '/test-nest-mba',
+    out: '/docs',
   },
 };
